@@ -1,0 +1,8 @@
+name: nanosecond
+version: 0.1.0
+
+targets:
+  nanosecond:
+    main: src/nanosecond.cr
+
+crystal: 1.19.0

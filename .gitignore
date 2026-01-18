@@ -1,0 +1,4 @@
+# Crystal
+bin/
+*.o
+.DS_Store
