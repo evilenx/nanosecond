@@ -1,19 +1,22 @@
-# Nanosecond Clock
+# nanosecond
 
-Precision time display at 144Hz (6.94ms intervals).
+144Hz clock. Millisecond precision.
 
-## Features
-- Sub-millisecond precision (`%3N`)
-- 144Hz refresh rate
-- Single file Crystal implementation
-- Zero dependencies (std only)
-- Cross-platform (Linux, macOS, future: Android-widget)
+    14-03-2026 01:20:17.231
 
-## Build
-```bash
-shards build --release
-```
-## Run
-```bash
-./bin/nanosecond
-```
+## build
+
+    crystal build src/nanosecond.cr -o bin/nanosecond --release
+
+## android
+
+    export ANDROID_NDK_HOME=/path/to/ndk-r25c
+    ./scripts/build-android.sh
+    cd nanosecond-widget && ./gradlew assembleDebug
+
+APK: https://github.com/evilenx/nanosecond/releases/tag/v1.1.0
+
+## bugs
+
+- widget needs a tap to start after install/reboot
+- service restarts every ~36s (Bionic fiber stack overflow)
