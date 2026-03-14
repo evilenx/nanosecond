@@ -1,4 +1,26 @@
-# Crystal
+# Crystal build outputs
 bin/
-*.o
+.crystal/
+lib/
+
+# Android - todo excepto deps precompilados
+android/libevent-2.1.12-stable/
+android/libevent-2.1.12-stable.tar.gz
+android/install/
+android/libs/
+android/build/
+android/build.gradle
+android/AndroidManifest.xml
+android/jni/
+android/res/
+android/src/
+
+# Widget build
+nanosecond-widget/app/build/
+nanosecond-widget/build/
+nanosecond-widget/.gradle/
+nanosecond-widget/local.properties
+nanosecond-widget/gradlew.bat
+
+# macOS
 .DS_Store
