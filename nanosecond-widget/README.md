@@ -1,38 +1,22 @@
-# nanosecond-widget
+# nanosecond
 
-Widget Android que ejecuta el binario Crystal compilado y muestra su output en pantalla de inicio.
+144Hz clock. Millisecond precision.
 
-## Setup
+    14-03-2026 01:20:17.231
 
-### 1. Copiar el binario Crystal al proyecto
+## build
 
-```bash
-cp android/libs/arm64-v8a/nanosecond nanosecond-widget/app/src/main/assets/nanosecond
-```
+    crystal build src/nanosecond.cr -o bin/nanosecond --release
 
-### 2. Compilar e instalar
+## android
 
-```bash
-cd nanosecond-widget
-./gradlew assembleDebug
-adb install app/build/outputs/apk/debug/app-debug.apk
-```
+    export ANDROID_NDK_HOME=/path/to/ndk-r25c
+    ./scripts/build-android.sh
+    cd nanosecond-widget && ./gradlew assembleDebug
 
-### 3. Agregar el widget
+APK: https://github.com/evilenx/nanosecond/releases/tag/v1.1.0
 
-Mantén presionado en la pantalla de inicio → Widgets → **Nanosecond**
+## bugs
 
-## Cómo funciona
-
-```
-Crystal binary (nanosecond)
-    → stdout línea por línea (~7ms/tick)
-    → NanosecondService (ForegroundService) lee BufferedReader
-    → SharedPreferences (last_time)
-    → broadcast ACTION_TICK
-    → NanosecondWidget.onReceive()
-    → RemoteViews.setTextViewText()
-    → pantalla de inicio
-```
-
-El binario Crystal ya detecta ANDROID_ROOT y usa `puts` en vez de `\r`.
+- widget needs a tap to start after install/reboot
+- service restarts every ~36s (Bionic fiber stack overflow)
